@@ -129,6 +129,7 @@ The figure above shows the results of `mi_model_gd` calculated with 100 trials e
 
 ## Version history
 
+* 0.4 - add vectorised functions for Matlab 
 * 0.3 - Change `mi_mixture` from an unconditional copnorm to a more faithful mixture model based on robust measures  of location and  scale
 * 0.2 - Rename `mi_gd` functions to `mi_model_` and add `mi_mixture`
 * 0.1 - Original version
