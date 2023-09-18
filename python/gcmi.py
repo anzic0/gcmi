@@ -19,7 +19,7 @@ def ctransform(x):
 
     xi = np.argsort(np.atleast_2d(x))
     xr = np.argsort(xi)
-    cx = (xr+1).astype(np.float) / (xr.shape[-1]+1)
+    cx = (xr+1).astype(float) / (xr.shape[-1]+1)
     return cx
  
 
@@ -61,7 +61,7 @@ def ent_g(x, biascorrect=True):
 
     ln2 = np.log(2)
     if biascorrect:
-        psiterms = sp.special.psi((Ntrl - np.arange(1,Nvarx+1).astype(np.float))/2.0) / 2.0
+        psiterms = sp.special.psi((Ntrl - np.arange(1,Nvarx+1).astype(float))/2.0) / 2.0
         dterm = (ln2 - np.log(Ntrl-1.0)) / 2.0
         HX = HX - Nvarx*dterm - psiterms.sum()
 
@@ -117,7 +117,7 @@ def mi_gg(x, y, biascorrect=True, demeaned=False):
 
     ln2 = np.log(2)
     if biascorrect:
-        psiterms = sp.special.psi((Ntrl - np.arange(1,Nvarxy+1)).astype(np.float)/2.0) / 2.0
+        psiterms = sp.special.psi((Ntrl - np.arange(1,Nvarxy+1)).astype(float)/2.0) / 2.0
         dterm = (ln2 - np.log(Ntrl-1.0)) / 2.0
         HX = HX - Nvarx*dterm - psiterms[:Nvarx].sum()
         HY = HY - Nvary*dterm - psiterms[:Nvary].sum()
@@ -233,15 +233,15 @@ def mi_model_gd(x, y, Ym, biascorrect=True, demeaned=False):
     if biascorrect:
         vars = np.arange(1,Nvarx+1)
 
-        psiterms = sp.special.psi((Ntrl - vars).astype(np.float)/2.0) / 2.0
+        psiterms = sp.special.psi((Ntrl - vars).astype(float)/2.0) / 2.0
         dterm = (ln2 - np.log(float(Ntrl-1))) / 2.0
         Hunc = Hunc - Nvarx*dterm - psiterms.sum()
 
-        dterm = (ln2 - np.log((Ntrl_y-1).astype(np.float))) / 2.0
+        dterm = (ln2 - np.log((Ntrl_y-1).astype(float))) / 2.0
         psiterms = np.zeros(Ym)
         for vi in vars:
             idx = Ntrl_y-vi
-            psiterms = psiterms + sp.special.psi(idx.astype(np.float)/2.0)
+            psiterms = psiterms + sp.special.psi(idx.astype(float)/2.0)
         Hcond = Hcond - Nvarx*dterm - (psiterms/2.0)
 
     # MI in bits
@@ -462,7 +462,7 @@ def gcmi_mixture_cd(x,y,Ym):
         # robust measure of loc from median
         cxmscaled = cxmscaled + xmmed
         classdat.append(cxmscaled)
-        ydat.append(yi*np.ones(xm.shape[1],dtype=np.int))
+        ydat.append(yi*np.ones(xm.shape[1],dtype=int))
 
     cx = np.concatenate(classdat,axis=1) 
     newy = np.concatenate(ydat)
@@ -531,7 +531,7 @@ def cmi_ggg(x, y, z, biascorrect=True, demeaned=False):
 
     ln2 = np.log(2)
     if biascorrect:
-        psiterms = sp.special.psi((Ntrl - np.arange(1,Nvarxyz+1)).astype(np.float)/2.0) / 2.0
+        psiterms = sp.special.psi((Ntrl - np.arange(1,Nvarxyz+1)).astype(float)/2.0) / 2.0
         dterm = (ln2 - np.log(Ntrl-1.0)) / 2.0
         HZ = HZ - Nvarz*dterm - psiterms[:Nvarz].sum()
         HXZ = HXZ - Nvarxz*dterm - psiterms[:Nvarxz].sum()
